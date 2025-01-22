@@ -162,7 +162,7 @@
 							                            <td><%= user.getFullName() %></td>
 							                            <td><%= user.getFullName() %></td>
 							                            <td><%= user.getEmail() %></td>
-							                            <td><%= user.getRoleId() %></td>
+							                            <td><%= user.getRole() %></td>
 							                            <td>
 			                                                <a href="#" class="btn btn-sm btn-primary">Sửa</a>
 			                                                <a href="#" class="btn btn-sm btn-danger">Xóa</a>

@@ -4,16 +4,16 @@ public class UserEntity {
 	private int id;
 	private String email;
 	private String fullName;
-	private int roleId;
+	private String role;
 	
 	
 	public UserEntity() {}
 
-	public UserEntity(int id, String email, String fullname, int roleId) {
+	public UserEntity(int id, String email, String fullname, String role) {
 		this.id = id;
 		this.email = email;
 		this.fullName = fullname;
-		this.roleId = roleId;
+		this.role = role;
 	}
 
 	public String getFullName() {
@@ -24,12 +24,12 @@ public class UserEntity {
 		this.fullName = fullName;
 	}
 	
-	public int getRoleId() {
-		return roleId;
+	public String getRole() {
+		return role;
 	}
 	
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	public int getId() {

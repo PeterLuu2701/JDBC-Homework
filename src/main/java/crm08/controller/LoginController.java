@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import config.MysqlConfig;
 import entity.UserEntity;
 
-@WebServlet(name="loginController", urlPatterns = {"/login"})
+@WebServlet(name="LoginController", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet{
 	
 	@Override

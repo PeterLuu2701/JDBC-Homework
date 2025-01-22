@@ -19,13 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 import config.MysqlConfig;
 import entity.UserEntity;
 
-@WebServlet(name="userTableController", urlPatterns = {"/user-table"})
+@WebServlet(name="userTableController", urlPatterns = {"/user", "/user-add"})
 public class UserTableController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// SQL query to fetch users
-        String query = "SELECT * FROM users"; 
+        String query = "SELECT u.id, u.fullname, u.email, r.name, r.description FROM users u JOIN roles r ON r.id = u.role_id"; 
         
         // Prepare connection to the database
         Connection connection = MysqlConfig.getConnection();
@@ -40,9 +40,9 @@ public class UserTableController extends HttpServlet {
                 int id = result.getInt("id");
                 String email = result.getString("email");
                 String fullname = result.getString("fullname");
-                int role_id = result.getInt("role_id");
+                String role = result.getString("description");
                 
-                listUser.add(new UserEntity(id, email, fullname, role_id));
+                listUser.add(new UserEntity(id, email, fullname, role));
             }
 
             // Set the listUser as a request attribute for JSP
@@ -54,5 +54,5 @@ public class UserTableController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    	}
 	}
