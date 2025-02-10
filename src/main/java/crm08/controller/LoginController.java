@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import config.MysqlConfig;
+import entity.RoleEntity;
 import entity.UserEntity;
 
 @WebServlet(name="LoginController", urlPatterns = {"/login"})
@@ -50,7 +51,7 @@ public class LoginController extends HttpServlet{
 		
 		//tạo mảng rỗng
 		List<UserEntity> listUser = new ArrayList<UserEntity>();
-		String query = "SELECT u.email, u.password FROM users u WHERE u.email = ? AND u.password = ?";
+		String query = "SELECT u.email, u.password, r.name FROM users u JOIN roles r ON u.role_id = r.id WHERE u.email = ? AND u.password = ?";
 
 		//Mở kết nối CSDL
 		Connection connection = MysqlConfig.getConnection();
@@ -66,8 +67,14 @@ public class LoginController extends HttpServlet{
 			
 			//duyệt từng dòng dữ liệu truy vấn được và gán vào listUser
 			while(result.next()) {
-				UserEntity entity = new UserEntity();
+				UserEntity entity = new UserEntity();				
 				entity.setEmail(result.getString("email"));
+				
+				RoleEntity roleEntity = new RoleEntity();
+				roleEntity.setName(result.getString("name"));
+				
+				entity.setRole(roleEntity);
+				
 				listUser.add(entity);
 			}
 		} catch (SQLException e) {
@@ -83,6 +90,9 @@ public class LoginController extends HttpServlet{
 			resp.addCookie(ckEmail);
 			resp.addCookie(ckPassword);
 			}
+			
+			Cookie ckRole = new Cookie("role", listUser.get(0).getRole().getName());
+			resp.addCookie(ckRole);
 			
 			String contextPath = req.getContextPath()
 ;			resp.sendRedirect(contextPath);

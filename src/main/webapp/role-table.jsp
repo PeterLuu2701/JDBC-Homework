@@ -1,8 +1,5 @@
-<%@page import="entity.UserEntity"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,10 +125,10 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Danh sách thành viên</h4>
+                        <h4 class="page-title">Danh sách quyền</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                        <a href="user-add.html" class="btn btn-sm btn-success">Thêm mới</a>
+                        <a href="role-add.html" class="btn btn-sm btn-success">Thêm mới</a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -144,29 +141,25 @@
                                     <thead>
                                         <tr>
                                             <th>STT</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                            <th>Role</th>
-                                            <th>#</th>
+                                            <th>Tên Quyền</th>
+                                            <th>Mô Tả</th>
+                                            <th>Hành Động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="user" items="${users}">  <%-- Use JSTL for looping --%>
+                                        <c:forEach var="role" items="${roles}">  
 							                <tr>
-							                    <td>${user.id}</td>
-							                    <td>${user.fullName}</td>
-							                    <td>${user.email}</td>
-							                    <td>${user.role.description}</td>  
+							                    <td>${role.id}</td>
+							                    <td>${role.name}</td>
+							                    <td>${role.description}</td>  
 							                    <td>
 							                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
 							                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
-							                        <a href="user-details.html" class="btn btn-sm btn-info">View</a>
 							                    </td>
 							                </tr>
 							            </c:forEach>
-							            <c:if test="${empty users}">  <%-- Handle empty user list --%>
-							                <tr><td colspan="6">No users found</td></tr>
+							            <c:if test="${empty roles}"> 
+							                <tr><td colspan="6">No roles found</td></tr>
 							            </c:if>
                                     </tbody>
                                 </table>
