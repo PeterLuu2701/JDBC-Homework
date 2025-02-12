@@ -12,7 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(filterName = "authenFilter", urlPatterns = {"/user-add", "/user", "/role"})
+@WebFilter(filterName = "authenFilter", urlPatterns = {"/user-add", "/user", "/role", "/role-add"})
 public class AuthenticationFilter implements Filter{
 
 	@Override
@@ -52,6 +52,14 @@ public class AuthenticationFilter implements Filter{
 			case "/role":
 				if(roleName.equals("ROLE_ADMIN")) {
 					System.out.println("Check role filter");
+					chain.doFilter(req, resp);
+				} else {
+					resp.sendRedirect("/login");
+				}
+				break;
+			case "/role-add":
+				if(roleName.equals("ROLE_ADMIN")) {
+					System.out.println("Check role add filter");
 					chain.doFilter(req, resp);
 				} else {
 					resp.sendRedirect("/login");

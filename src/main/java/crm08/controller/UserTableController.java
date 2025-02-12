@@ -106,7 +106,7 @@ public class UserTableController extends HttpServlet {
 			
 			List<RoleEntity> roles = roleServices.getRole();
 			
-			req.setAttribute("roles", roles);
+			req.setAttribute("role", roles);
 			
 			req.getRequestDispatcher("user-add.jsp").forward(req, resp);
 		}

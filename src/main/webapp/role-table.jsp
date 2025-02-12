@@ -1,3 +1,6 @@
+<%@page import="entity.RoleEntity"%>
+<%@page import="entity.UserEntity"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -146,22 +149,19 @@
                                             <th>Hành Động</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <c:forEach var="role" items="${roles}">  
-							                <tr>
-							                    <td>${role.id}</td>
-							                    <td>${role.name}</td>
-							                    <td>${role.description}</td>  
-							                    <td>
-							                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
-							                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
-							                    </td>
-							                </tr>
-							            </c:forEach>
-							            <c:if test="${empty roles}"> 
-							                <tr><td colspan="6">No roles found</td></tr>
-							            </c:if>
-                                    </tbody>
+									   <tbody>
+									        <c:forEach var="role" items="${roles}">
+									            <tr>
+									                <td>${role.id}</td>
+									                <td>${role.name}</td>
+									                <td>${role.description}</td>
+									                <td>
+									                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+									                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+									                </td>
+									            </tr>
+									        </c:forEach>
+									   </tbody>									
                                 </table>
                             </div>
                         </div>

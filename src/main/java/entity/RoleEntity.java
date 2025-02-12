@@ -5,6 +5,11 @@ public class RoleEntity {
 	private String name;
 	private String description;
 	
+	public RoleEntity( String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+	
 	public RoleEntity(int id, String name, String description) {
 		this.id = id;
 		this.name = name;

@@ -13,4 +13,13 @@ public class RoleServices {
 		
 		return roles;
 	}
+	
+	public boolean isRoleNameExists(String name) {
+        return roleRepository.findByName(name) != null;
+    }
+
+	public boolean insertRole(String name, String description) {
+		return roleRepository.insertRole(name, description) > 0;
+    }
+	
 }

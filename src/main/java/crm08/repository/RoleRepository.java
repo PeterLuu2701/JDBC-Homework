@@ -3,6 +3,7 @@ package crm08.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class RoleRepository {
 	//findByIdAndName
 	public List<RoleEntity> findAll() {
 	    List<RoleEntity> list = new ArrayList<>();
-	    String query = "SELECT * FROM roles";
+	    String query = "SELECT id, name, description FROM roles";
 
 	    try (Connection connection = MysqlConfig.getConnection();
 	         PreparedStatement statement = connection.prepareStatement(query);
@@ -38,4 +39,41 @@ public class RoleRepository {
 
 	    return list;
 	}
+	
+	public RoleEntity findByName(String name) {
+	    String query = "SELECT * FROM roles WHERE name = ?";
+	    try (Connection connection = MysqlConfig.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(query)) {
+	        statement.setString(1, name);
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            if (resultSet.next()) {
+	                RoleEntity entity = new RoleEntity();
+	                entity.setId(resultSet.getInt("id"));
+	                entity.setName(resultSet.getString("name"));
+	                entity.setDescription(resultSet.getString("description"));
+	                return entity;
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("findByName: " + e.getMessage());
+	    }
+	    return null;
+	}
+
+	public int insertRole(String name, String description) {
+        String query = "INSERT INTO roles (name, description) VALUES (?, ?)";
+        int count = 0; // Initialize count
+        try {
+			Connection connection = MysqlConfig.getConnection();
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, name);
+			statement.setString(2, description);
+			
+			count = statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("addRole: " + e.getMessage());
+        }
+        return count;
+    }
 }

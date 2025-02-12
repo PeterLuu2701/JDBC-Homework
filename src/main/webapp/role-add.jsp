@@ -1,8 +1,7 @@
-<%@page import="entity.UserEntity"%>
+<%@page import="entity.RoleEntity"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,14 +17,12 @@
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <!-- animation CSS -->
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="css/colors/blue-dark.css" id="theme" rel="stylesheet">
-    <link rel="stylesheet" href="./css/custom.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -128,48 +125,39 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Danh sách thành viên</h4>
+                        <h4 class="page-title">Thêm mới quyền</h4>
                     </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                        <a href="user-add.html" class="btn btn-sm btn-success">Thêm mới</a>
-                    </div>
-                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /row -->
+                <!-- /.row -->
+                <!-- .row -->
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-2 col-12"></div>
+                    <div class="col-md-8 col-xs-12">
                         <div class="white-box">
-                            <div class="table-responsive">
-                                <table class="table" id="example">
-                                    <thead>
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                            <th>Role</th>
-                                            <th>#</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="user" items="${users}">  <%-- Use JSTL for looping --%>
-							                <tr>
-							                    <td>${user.id}</td>
-							                    <td>${user.fullName}</td>
-							                    <td>${user.email}</td>
-							                    <td>${user.role.description}</td>  
-							                    <td>
-							                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
-							                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
-							                        <a href="user-details.html" class="btn btn-sm btn-info">View</a>
-							                    </td>
-							                </tr>
-							            </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <form action="role-add" method="post" class="form-horizontal form-material">
+                                <div class="form-group">
+                                    <label class="col-md-12">Tên quyền</label>
+                                    <div class="col-md-12">
+                                        <input name="name" id="name" type="text" placeholder="Tên quyền"
+                                            class="form-control form-control-line" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Mô tả</label>
+                                    <div class="col-md-12">
+                                        <input name="description" id="description" type="text" placeholder="Mô tả" class="form-control form-control-line" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Add Role</button>
+                                        <a href="role-table.html" class="btn btn-primary">Quay lại</a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    <div class="col-md-2 col-12"></div>
                 </div>
                 <!-- /.row -->
             </div>
@@ -187,16 +175,10 @@
     <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
     <!--slimscroll JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
-    <script src="js/jquery.dataTables.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-    </script>
 </body>
 
 </html>

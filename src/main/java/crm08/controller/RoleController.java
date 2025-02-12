@@ -32,15 +32,38 @@ public class RoleController extends HttpServlet {
 			getRole(req, resp);
 			break;
 		case "/role-add":
-//			userAdd(req, resp);
+			addRole(req, resp);
 			break;
 		}
 	}
 	
+	@Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = req.getServletPath();
+        String name = req.getParameter("name");
+		String description = req.getParameter("description");
+
+        switch (path) {
+            case "/role-add":
+            	roleServices.insertRole(name, description);
+                addRole(req, resp);
+                break;
+            default:
+                break;
+        }
+    }
+	
+	private void addRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<RoleEntity> roles = roleServices.getRole();
+		
+		req.setAttribute("role", roles);
+		req.getRequestDispatcher("role-add.jsp").forward(req, resp);
+    }
+	
 	private void getRole(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<RoleEntity> listRole = roleServices.getRole();
         
-        req.setAttribute("roles", listRole); // Set role list to request
+        req.setAttribute("role", listRole); // Set role list to request
         req.getRequestDispatcher("/role-table.jsp").forward(req, resp); // Forward to JSP
     }
 }

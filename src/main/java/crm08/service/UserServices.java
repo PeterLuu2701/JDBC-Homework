@@ -20,7 +20,6 @@ public class UserServices {
 		return userRepository.insertUser(fullname, getMd5(password), email, roleId) > 0;
 	}
 	
-	public 
 	
 	public static String getMd5(String input)
     {
