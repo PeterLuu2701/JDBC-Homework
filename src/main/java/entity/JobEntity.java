@@ -2,13 +2,13 @@ package entity;
 
 import java.util.Date;
 
-public class GroupWorkEntity {
+public class JobEntity {
 	private int id;
 	private String name;
 	private Date startDate;
 	private Date endDate;
 	
-	public GroupWorkEntity(int id, String name, Date startDate, Date endDate) {
+	public JobEntity(int id, String name, Date startDate, Date endDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -16,7 +16,7 @@ public class GroupWorkEntity {
 		this.endDate = endDate;
 	}
 
-	public GroupWorkEntity() {
+	public JobEntity() {
 	}
 
 	public int getId() {
