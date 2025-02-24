@@ -152,7 +152,7 @@
                                         </tr>
                                     </thead>
 									   <tbody>
-									        <c:forEach var="roleItem" items="${role}">gh ch
+									        <c:forEach var="roleItem" items="${role}">
 									            <tr>
 									                <td>${roleItem.id}</td>
 									                <td>${roleItem.name}</td>

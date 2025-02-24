@@ -12,7 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(filterName = "authenFilter", urlPatterns = {"/user-add", "/user", "/role", "/role-add", "/job", "/job-add"})
+@WebFilter(filterName = "authenFilter", urlPatterns = {"/user-add", "/user", "/role", "/role-add", "/job", "/job-add", "/task", "/task-add"})
 public class AuthenticationFilter implements Filter{
 
 	@Override
@@ -74,6 +74,14 @@ public class AuthenticationFilter implements Filter{
 				}
 				break;
 			case "/job-add":
+				if(roleName.equals("ROLE_ADMIN") || roleName.equals("ROLE_MANAGER") || roleName.equals("ROLE_USER")) {
+					System.out.println("Check job filter");
+					chain.doFilter(req, resp);
+				} else {
+					resp.sendRedirect("/login");
+				}
+				break;
+			case "/task":
 				if(roleName.equals("ROLE_ADMIN") || roleName.equals("ROLE_MANAGER") || roleName.equals("ROLE_USER")) {
 					System.out.println("Check job filter");
 					chain.doFilter(req, resp);
